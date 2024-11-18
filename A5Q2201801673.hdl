@@ -1,17 +1,24 @@
-CHIP A5Q2201801673{
-    IN L, C, G;    
-    OUT U;         
+CHIP A5Q2201801673 {
+    IN L, C, G;    // Input signals
+    OUT U;         // Output signal
 
     PARTS:
-    Not(in=L, out=notL);
 
-    And(a=L, b=C, out=and1);
+    // Gate 1: NOT gate for L
+    Not(in=L, out=NotL);
 
-    Or(a=notL, b=C, out=or1);
+    // Gate 2: AND gate for L AND C
+    And(a=L, b=C, out=And1);
 
-    Or(a=and1, b=or1, out=or2);
+    // Gate 3: OR gate for NotL OR C
+    Or(a=NotL, b=C, out=Or1);
 
-    Not(in=G, out=notG);
+    // Gate 4: OR gate for And1 OR Or1
+    Or(a=And1, b=Or1, out=Or2);
 
-    And(a=notG, b=or2, out=U);
+    // Gate 5: NOT gate for G
+    Not(in=G, out=NotG);
+
+    // Gate 6: AND gate for NotG AND Or2
+    And(a=NotG, b=Or2, out=U);
 }
