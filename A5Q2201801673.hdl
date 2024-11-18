@@ -3,15 +3,15 @@ CHIP A5Q2201801673{
     OUT U;         
 
     PARTS:
-    NOT(in=L, out=notL);
+    Not(in=L, out=notL);
 
-    AND(a=L, b=C, out=and1);
+    And(a=L, b=C, out=and1);
 
-    OR(a=notL, b=C, out=or1);
+    Or(a=notL, b=C, out=or1);
 
-    OR(a=and1, b=or1, out=or2);
+    Or(a=and1, b=or1, out=or2);
 
-    NOT(in=G, out=notG);
+    Not(in=G, out=notG);
 
-    AND(a=notG, b=or2, out=U);
+    And(a=notG, b=or2, out=U);
 }
